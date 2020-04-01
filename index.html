@@ -21,7 +21,64 @@
 
 
 <body>
-  
+
+
+    <div class="container">
+        <!-- Title -->
+        <div class="jumbotron">
+            <h1 class="display-4 text-center">Train Time</h1>
+            <p class="text-center">Choo Choo</p>
+        </div>
+        <!-- Train Times (to be filled by firebase) -->
+        <div class="card">
+            <div class="card-header bg-primary text-white">Current Train Schedule</div>
+            <div class="card-body">
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Train Name</th>
+                            <th>Destination</th>
+                            <th>Frequency (min)</th>
+                            <th>Next Arrival</th>
+                            <th>Minutes Away</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Firebase to fill -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br>
+        <!-- Input Form Below -->
+        <div class="card">
+            <div class="card-header bg-primary text-white">Add Train</div>
+            <div class="card-body">
+                <form>
+                    <div class="form-group">
+                        <label for="">Train Name</label>
+                        <input type="text" class="form-control" id="" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Destination</label>
+                        <input type="text" class="form-control" id="" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="">First Train Time (HH:mm - military time)</label>
+                        <input type="text" class="form-control" name="" id="">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Frequency (min)</label>
+                        <input type="text" class="form-control" name="" id="">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
     <h1>User Database</h1>
     <input type="text" placeholder="name" id='nameField'>
     <input type="text" placeholder="age" id="ageField">
