@@ -24,7 +24,7 @@ $("#submitButton").on("click", function () {
     firstTrainTime = $("#firstTrainField").val().trim()
     frequency = $("#frequencyField").val().trim()
 
-    database.ref().set({
+    database.ref().push({
         trainName: trainName,
         destination: destination,
         firstTrainTime: firstTrainTime,
@@ -39,15 +39,24 @@ $("#submitButton").on("click", function () {
     return false;
 });
 
-database.ref().on("value", function (snapshot) {
-
-    console.log(snapshot.val());
+database.ref().on("child_added", function (snapshot) {
 
     trainName = snapshot.val().trainName;
     destination = snapshot.val().destination;
     firstTrainTime = snapshot.val().firstTrainTime;
     frequency = snapshot.val().frequency;
 
-    $("#tableBody").append("<tr><td>" + trainName + "</td><td>" + destination + "</td><td>" + firstTrainTime + "</td><td>" + frequency + "</td></tr>")
+    // CONVERTING FIRST INPUT 
+    var firstTrain = moment(firstTrainTime, "HH:mm").subtract(5, "years");
+    // DIFFERENCE IN TIME IN MINUTES
+    var diffTime = moment().diff(moment(firstTrain), "minutes");
+    // FIND THE REMAINDER FOR THE NEXT TRAIN TIME
+    var remainder = diffTime % frequency;
+    // frequency - remainder = HOW far next train is
+    var nextTrain = frequency - remainder;
+
+    var nextArrival = moment().add(nextTrain, "minutes").format("LT");
+
+    $("#tableBody").append("<tr><td>" + trainName + "</td><td>" + destination + "</td><td>" + frequency + "</td><td>" + nextArrival + "</td><td>" + nextTrain + "</td></tr>")
 
 })
